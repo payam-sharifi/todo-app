@@ -1,8 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-import { queryClient } from "@/services/queryClient";
+
 import { deleteTodoById } from "@/services";
+import { queryClient } from "@/lib/react-query/queryClient";
 
 export const useDeleteTodo = () => {
   return useMutation({

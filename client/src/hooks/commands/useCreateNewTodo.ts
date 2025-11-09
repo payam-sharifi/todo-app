@@ -1,9 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { queryClient } from "@/services/queryClient";
+
 
 import { createNewTodo } from "@/services";
 import type { TodoRqType } from "@/types/todos.type";
+import { queryClient } from "@/lib/react-query/queryClient";
 
 export const useCreateNewTodo = () => {
   return useMutation({
