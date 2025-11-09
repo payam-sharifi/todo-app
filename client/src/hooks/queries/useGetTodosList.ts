@@ -1,0 +1,27 @@
+import { useInfiniteQuery } from "@tanstack/react-query";
+
+import { getToDoList } from "@/services";
+
+import type { TodoRsType } from "@/types/todos.type";
+import type { ApiResponse } from "@/types/generic.types";
+
+export const useGetTodosList = () => {
+  return useInfiniteQuery({
+    queryKey: ["getAllToDoList"],
+    queryFn: async ({ pageParam = 1 }: { pageParam: number }) =>
+      getToDoList({ page: pageParam }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage: ApiResponse<TodoRsType[]>) => {
+      if (!lastPage.next) return undefined;
+      const nextUrl = new URL(lastPage.next);
+      const nextPage = nextUrl.searchParams.get("page");
+      return nextPage ? parseInt(nextPage, 10) : undefined;
+    },
+    getPreviousPageParam: (firstPage: ApiResponse<TodoRsType[]>) => {
+      if (!firstPage.previous) return undefined;
+      const prevUrl = new URL(firstPage.previous);
+      const prevPage = prevUrl.searchParams.get("page");
+      return prevPage ? parseInt(prevPage, 10) : undefined;
+    },
+  });
+};
