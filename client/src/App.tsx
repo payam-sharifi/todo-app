@@ -1,13 +1,19 @@
-
+import TodoForm from "./components/features/todos/TodoForm";
+import TodoList from "./components/features/todos/TodoList";
 
 function App() {
-
-
   return (
-  <>
-  <h1 className='text-3xl font-bold underline'>hello world</h1>
-  </>
-  )
+    <div className="bg-purple-950 p-2 min-h-screen flex justify-center items-center">
+      <div className="max-w-[500px] w-[90%] bg-slate-900 p-4 rounded-md shadow-md flex flex-col h-[600px]">
+        <h1 className="text-center text-white text-xl mb-4">Aufgabenliste</h1>
+        <TodoForm />
+
+        <div className="flex-1 mt-4 overflow-hidden">
+          <TodoList />
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;

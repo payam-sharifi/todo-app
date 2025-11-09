@@ -2,10 +2,11 @@
 import { createRoot } from 'react-dom/client'
 import { QueryClientProvider } from '@tanstack/react-query';
 
-import "./styles/main.css";
-import App from './App.tsx'
 import { ToastContainer } from 'react-toastify';
 import { queryClient } from './lib/react-query/queryClient.ts';
+
+import App from './App.tsx'
+import "./styles/main.css";
 
 
 
