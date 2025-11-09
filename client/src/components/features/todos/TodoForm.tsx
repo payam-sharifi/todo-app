@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useCreateNewTodo } from "@/hooks";
 import type { TodoRqType } from "@/types/todos.type";
 import { Spinner } from "@/components/common/Spinner";
-import TodoFilter from "./TodoFilter";
+
 
 export default function TodoForm() {
   const { mutate: CreateTodoItem, isPending } = useCreateNewTodo();
@@ -27,7 +27,7 @@ export default function TodoForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex flex-wrap gap-3 justify-center my-8 max-w-3xl mx-auto">
+      <div className="flex flex-wrap gap-3 justify-center my-3 max-w-3xl mx-auto">
         <div className="flex flex-col flex-1 min-w-[200px]">
           <label className="text-gray-300 mb-1">Titel *</label>
           <input
@@ -59,7 +59,10 @@ export default function TodoForm() {
           </button>
         </div>
       </div>
-      <TodoFilter />
+
+
+
+     
     </form>
   );
 }

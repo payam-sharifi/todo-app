@@ -1,5 +1,5 @@
+import TodoFilterList from "./components/features/todos/TodoFilterList";
 import TodoForm from "./components/features/todos/TodoForm";
-import TodoList from "./components/features/todos/TodoList";
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
         <h1 className="text-center text-white text-xl mb-4">Aufgabenliste</h1>
         <TodoForm /> 
         <div className="flex-1 mt-4 overflow-hidden">
-          <TodoList />
+          <TodoFilterList />
         </div>
       </div>
     </div>

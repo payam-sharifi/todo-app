@@ -10,7 +10,12 @@ import {
 import { TodoItem } from "./TodoItem";
 import { ConfirmModal } from "@/components/common/ConfirmModal";
 
-export default function TodoList() {
+interface TodoListProps {
+  status: string;
+  title?: string;
+}
+
+export default function TodoList({ status, title }: TodoListProps) {
   const {
     data: todosResponse,
     isLoading,
@@ -18,7 +23,9 @@ export default function TodoList() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useGetTodosList();
+  } = useGetTodosList({ status, title });
+  
+
 
   const { mutate: mutateDeleteTodo, isPending } = useDeleteTodo();
   const { mutate: mutateDoneToggle } = useUpdateTodoById();

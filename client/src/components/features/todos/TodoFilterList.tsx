@@ -1,0 +1,32 @@
+import { useEffect, useState } from "react";
+import TodoFilter from "./TodoFilter";
+import TodoList from "./TodoList";
+
+export default function TodoFilterList() {
+  const [status, setStatus] = useState("offen");
+  const [title, setTitle] = useState("");
+  const [debouncedTitle, setDebouncedTitle] = useState("");
+
+  // Debounce title input to avoid too many API calls
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedTitle(title);
+    }, 500); // Wait 500ms after user stops typing
+
+    return () => clearTimeout(timer);
+  }, [title]);
+
+  return (
+    <div className="flex flex-col h-full">
+      <TodoFilter
+        status={status}
+        onStatusChange={setStatus}
+        title={title}
+        onTitleChange={setTitle}
+      />
+      <div className="flex-1 overflow-hidden">
+        <TodoList status={status} title={debouncedTitle} />
+      </div>
+    </div>
+  );
+}
