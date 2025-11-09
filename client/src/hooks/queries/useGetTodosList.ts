@@ -5,11 +5,19 @@ import { getToDoList } from "@/services";
 import type { TodoRsType } from "@/types/todos.type";
 import type { ApiResponse } from "@/types/generic.types";
 
-export const useGetTodosList = () => {
+export const useGetTodosList = (
+  {
+    status,
+    title,
+  }: {
+    status?: string;
+    title?: string;
+  }
+) => {
   return useInfiniteQuery({
-    queryKey: ["getAllToDoList"],
+    queryKey: ["getAllToDoList", status, title],
     queryFn: async ({ pageParam = 1 }: { pageParam: number }) =>
-      getToDoList({ page: pageParam }),
+      getToDoList({ page: pageParam ,status, title}),
     initialPageParam: 1,
     getNextPageParam: (lastPage: ApiResponse<TodoRsType[]>) => {
       if (!lastPage.next) return undefined;
@@ -23,5 +31,9 @@ export const useGetTodosList = () => {
       const prevPage = prevUrl.searchParams.get("page");
       return prevPage ? parseInt(prevPage, 10) : undefined;
     },
+    refetchOnWindowFocus: false, // Prevent refetch when switching tabs/windows
+    refetchOnMount: true, // Allow refetch on mount if data is stale
+    refetchOnReconnect: false, // Prevent refetch on network reconnect
+    staleTime: 60000, // Consider data fresh for 60 seconds
   });
 };
