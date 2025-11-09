@@ -1,10 +1,26 @@
-import { StrictMode } from 'react'
+
 import { createRoot } from 'react-dom/client'
-import '@/styles/main.css'
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from '@/services/queryClient.ts';
+import "./styles/main.css";
 import App from './App.tsx'
+import { ToastContainer } from 'react-toastify';
+
+
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+  <QueryClientProvider client={queryClient}>
     <App />
-  </StrictMode>,
+    <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="colored"
+        style={{ zIndex: 9999 }}
+        toastStyle={{ zIndex: 9999 }}
+      />
+    </QueryClientProvider>
 )
