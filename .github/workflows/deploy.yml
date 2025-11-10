@@ -1,3 +1,19 @@
+name: Deploy TodoApp to Server
+
+on:
+  push:
+    branches: [ master ]  
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Add server to known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
       - name: Deploy via SSH
         uses: appleboy/ssh-action@master
         with:
@@ -19,7 +35,7 @@
 
             echo "🐍 Updating backend..."
             cd ../server
-            source venv/bin/activate
+            source ../venv/bin/activate
             pip install -r requirements.txt
             python manage.py migrate --noinput
             deactivate
@@ -29,4 +45,4 @@
             pm2 start "/todo-app/server/venv/bin/gunicorn todos.wsgi:application --chdir /todo-app/server --bind 127.0.0.1:8000" --name todoapp-back
             pm2 save
 
-            echo "✅ Deployment complete!"
+            echo "✅ Deployment done!"
