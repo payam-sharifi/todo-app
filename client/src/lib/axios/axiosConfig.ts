@@ -1,4 +1,3 @@
-// lib/api.ts
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -13,7 +12,6 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    //console.log(`[API REQUEST] ${config.method?.toUpperCase()} ${config.url}`);
     return config;
   },
   (error) => {

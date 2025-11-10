@@ -2,11 +2,7 @@ import { useCallback, useMemo, useEffect, useRef, useState } from "react";
 
 import type { TodoRsType, TodoStatus } from "@/types/todos.type";
 import { Spinner } from "@/components/common/Spinner";
-import {
-  useDeleteTodo,
-  useGetTodosList,
-  useUpdateTodoById,
-} from "@/hooks";
+import { useDeleteTodo, useGetTodosList, useUpdateTodoById } from "@/hooks";
 import { TodoItem } from "./TodoItem";
 import { ConfirmModal } from "@/components/common/ConfirmModal";
 
@@ -24,8 +20,6 @@ export default function TodoList({ status, title }: TodoListProps) {
     hasNextPage,
     isFetchingNextPage,
   } = useGetTodosList({ status, title });
-  
-
 
   const { mutate: mutateDeleteTodo, isPending } = useDeleteTodo();
   const { mutate: mutateDoneToggle } = useUpdateTodoById();
@@ -48,6 +42,20 @@ export default function TodoList({ status, title }: TodoListProps) {
       todo_ID,
       body: {
         status: currentStatus === "erledigt" ? "in_bearbeitung" : "erledigt",
+        titel,
+      },
+    });
+  };
+
+  const handleProgressStatus = (
+    todo_ID: number,
+    currentStatus: TodoStatus,
+    titel: string
+  ) => {
+    mutateDoneToggle({
+      todo_ID,
+      body: {
+        status: currentStatus === "offen" ? "in_bearbeitung" : "offen",
         titel,
       },
     });
@@ -100,6 +108,7 @@ export default function TodoList({ status, title }: TodoListProps) {
           todo={todo}
           onToggle={handleDoneToggle}
           onDelete={handleDeleteClick}
+          onProgress={handleProgressStatus}
         />
       )),
     [allTodos, handleDoneToggle, handleDeleteClick]

@@ -7,11 +7,11 @@ export default function TodoFilterList() {
   const [title, setTitle] = useState("");
   const [debouncedTitle, setDebouncedTitle] = useState("");
 
-  // Debounce title input to avoid too many API calls
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedTitle(title);
-    }, 500); // Wait 500ms after user stops typing
+    }, 500); 
 
     return () => clearTimeout(timer);
   }, [title]);

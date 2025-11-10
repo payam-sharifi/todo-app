@@ -31,9 +31,9 @@ export const useGetTodosList = (
       const prevPage = prevUrl.searchParams.get("page");
       return prevPage ? parseInt(prevPage, 10) : undefined;
     },
-    refetchOnWindowFocus: false, // Prevent refetch when switching tabs/windows
-    refetchOnMount: true, // Allow refetch on mount if data is stale
-    refetchOnReconnect: false, // Prevent refetch on network reconnect
-    staleTime: 60000, // Consider data fresh for 60 seconds
+    refetchOnWindowFocus: false, 
+    refetchOnMount: true, 
+    refetchOnReconnect: false, 
+    staleTime: 60000, 
   });
 };
