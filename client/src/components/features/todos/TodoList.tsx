@@ -85,6 +85,16 @@ export default function TodoList({ status, title }: TodoListProps) {
     setTodoToDelete(null);
   }, []);
 
+  const handleEdit = (todo_ID: number, titel: string, beschreibung: string) => {
+    mutateDoneToggle({
+      todo_ID,
+      body: {
+        beschreibung,
+        titel,
+      },
+    });
+  };
+
   useEffect(() => {
     const el = listRef.current;
     if (!el) return;
@@ -109,6 +119,7 @@ export default function TodoList({ status, title }: TodoListProps) {
           onToggle={handleDoneToggle}
           onDelete={handleDeleteClick}
           onProgress={handleProgressStatus}
+          onEdit={handleEdit}
         />
       )),
     [allTodos, handleDoneToggle, handleDeleteClick]
