@@ -2,7 +2,7 @@ name: Deploy TodoApp to Server
 
 on:
   push:
-    branches: [ main ]  # change to master if needed
+    branches: [ master ]  
 
 jobs:
   deploy:
