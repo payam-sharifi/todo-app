@@ -2,7 +2,7 @@ name: Deploy TodoApp to Server
 
 on:
   push:
-    branches: [main]  # یا master بسته به branch اصلی
+    branches: [ main ]  # change to master if needed
 
 jobs:
   deploy:
@@ -21,25 +21,28 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 22
-          timeout: 10m
           script: |
             cd /todo-app
 
-            # Pull latest code
-            git pull origin master
+            echo "🔄 Pulling latest code..."
+            git fetch origin
+            git reset --hard origin/main
 
-            # Frontend (React)
+            echo "📦 Building frontend..."
             cd client
             npm install
             npm run build
 
-            # Backend (Django)
+            echo "🐍 Updating backend..."
             cd ../server
-            source venv/bin/activate
+            source ../venv/bin/activate
             pip install -r requirements.txt
-            python manage.py migrate
+            python manage.py migrate --noinput
+            deactivate
 
-            # Restart Gunicorn with PM2
+            echo "🚀 Restarting backend..."
             pm2 delete todoapp-back || true
-            pm2 start "venv/bin/gunicorn todos.wsgi:application --bind 127.0.0.1:8000" --name todoapp-back
+            pm2 start "../venv/bin/gunicorn server.wsgi:application --bind 127.0.0.1:8000" --name todoapp-back
             pm2 save
+
+            echo "✅ Deployment done!"
