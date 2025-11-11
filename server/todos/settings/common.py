@@ -72,7 +72,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'todos.wsgi.application'
 
 
-
+ALLOWED_HOSTS = ["*"]
 
 
 # Password validation
