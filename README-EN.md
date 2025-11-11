@@ -3,6 +3,9 @@
 A modern **full-stack Todo Application** built with **React (Vite + TypeScript)** on the frontend and **Django REST Framework** on the backend.  
 It includes an automated **GitHub Actions CI/CD pipeline** that deploys the app to a remote server using SSH and PM2.
 
+FrontEnd   : https://mytodolist.appventuregmbh.com
+BackendApi : https://apimytodos.appventuregmbh.com/api/todos
+
 ---
 ## 🏗️ Architecture Overview
 

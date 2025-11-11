@@ -3,6 +3,8 @@
 Eine moderne **Full-Stack-Todo-Anwendung**, gebaut mit **React (Vite + TypeScript)** im Frontend und **Django REST Framework** im Backend.  
 Sie enthält eine automatisierte **GitHub Actions CI/CD-Pipeline**, die die App über SSH auf einen Remote-Server mit **PM2** bereitstellt.
 
+FrontEnd   : https://mytodolist.appventuregmbh.com
+BackendApi : https://apimytodos.appventuregmbh.com/api/todos
 ---
 
 ## 🏗️ Architekturübersicht
