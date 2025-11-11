@@ -2,7 +2,7 @@ name: Deploy TodoApp to Server
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master ]  
 
 jobs:
   deploy:
@@ -24,8 +24,9 @@ jobs:
           script: |
             set -e
 
-            echo "🔄 Pulling latest code..."
             cd /todo-app
+
+            echo "🔄 Pulling latest code..."
             git reset --hard
             git clean -fd
             git pull origin master
@@ -35,20 +36,17 @@ jobs:
             npm ci
             npm run build
 
-            echo "🐍 Setting up backend..."
+            echo "🐍 Updating backend..."
             cd ../server
-            # Activate virtual environment
-            source ../venv/bin/activate
+            source venv/bin/activate
+            pip install --upgrade pip
             pip install -r requirements.txt
             python manage.py migrate --noinput
-
-           
-
             deactivate
 
-            echo "🚀 Restarting backend with PM2..."
+            echo "🚀 Restarting backend..."
             pm2 delete todoapp-back || true
-            pm2 start /todo-app/venv/bin/gunicorn \
+            pm2 start /todo-app/server/venv/bin/gunicorn \
               --name todoapp-back \
               --chdir /todo-app/server \
               todos.wsgi:application \
