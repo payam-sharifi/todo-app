@@ -45,7 +45,7 @@ export const TodoItem = memo(
     }, [todo.titel, todo.beschreibung]);
 
     return (
-      <div className="bg-purple-800 p-3 rounded-lg flex justify-between items-center my-3 text-white shadow-md hover:bg-purple-700 transition-colors duration-200">
+      <div className="bg-purple-800 px-3 py-1 rounded-lg flex justify-between items-center my-2 text-white shadow-md hover:bg-purple-700 transition-colors duration-200 mx-auto">
         <div className="flex items-start gap-2 flex-1">
           <input
             id={`todo-${todo.id}`}
@@ -55,7 +55,7 @@ export const TodoItem = memo(
             checked={
               todo.status === "in_bearbeitung" || todo.status === "erledigt"
             }
-            className="cursor-pointer w-4 h-4 mt-1 accent-purple-500 bg-gray-100 border-purple-900 rounded-sm 
+            className=" cursor-pointer w-4 h-4 mt-1 accent-purple-500 bg-gray-100 border-purple-900 rounded-sm 
              focus:ring-purple-900 dark:focus:ring-purple-900 dark:ring-offset-gray-800 
              focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
           />
@@ -91,14 +91,14 @@ export const TodoItem = memo(
           ) : (
             <div>
               <p
-                className={`text-sm ${
+                className={`text-sm font-bold${
                   todo.status === "erledigt" ? "line-through text-gray-300" : ""
                 }`}
               >
                 {todo.titel}
               </p>
               <p
-                className={`text-xs text-purple-200 ${
+                className={`text-xs text-purple-200 italic ${
                   todo.status === "erledigt" ? "line-through text-gray-300" : ""
                 }`}
               >

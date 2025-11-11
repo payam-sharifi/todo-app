@@ -136,20 +136,20 @@ export default function TodoList({ status, title }: TodoListProps) {
   if (error) {
     return (
       <p className="text-red-500 text-center py-8">
-        Error loading todos: {error.message}
+        Fehler beim Laden der Todos: {error.message}
       </p>
     );
   }
 
   if (!allTodos.length && !isLoading) {
-    return <p className="text-white text-center py-8">No todos found</p>;
+    return <p className="text-white text-center py-8">Keine Aufgaben gefunden</p>;
   }
 
   return (
     <>
       <div
         ref={listRef}
-        className="overflow-y-auto h-full pr-2 
+        className="overflow-y-auto h-full 
                [scrollbar-width:thin] 
                [scrollbar-color:white_transparent] 
                [&::-webkit-scrollbar]:w-2 
