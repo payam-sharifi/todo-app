@@ -51,6 +51,7 @@ export const TodoItem = memo(
             id={`todo-${todo.id}`}
             type="checkbox"
             onClick={handleProgressToggle}
+           onChange={()=>console.log()}
             checked={
               todo.status === "in_bearbeitung" || todo.status === "erledigt"
             }
@@ -132,14 +133,15 @@ export const TodoItem = memo(
                     : "Mark as complete"
                 }
               />
+          
+            </>
+          )}
               <FaTrash
                 className="cursor-pointer hover:text-red-300 text-gray-300 transition-colors duration-200"
                 size={18}
                 onClick={handleDelete}
                 aria-label="Delete todo"
               />
-            </>
-          )}
         </div>
       </div>
     );

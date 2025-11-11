@@ -23,7 +23,7 @@ export default function TodoFilter({
           onChange={(e) => onStatusChange(e.target.value)}
           className="border-2 outline-none border-gray-500 bg-transparent text-white p-2 rounded-md focus:border-white"
         >
-          <option value="">All</option>
+          {/* <option value="">All</option> */}
           <option value="offen">Offen</option>
           <option value="in_bearbeitung">In Bearbeitung</option>
           <option value="erledigt">Erledigt</option>

@@ -16,7 +16,7 @@ export const getToDoList = async ({
   const params = new URLSearchParams();
   params.append("page", page.toString());
   if (status) params.append("status", status);
-  if (title) params.append("title", title);
+  if (title) params.append("search", title);
 
   const response = await api.get(`todos/?${params.toString()}`);
   return response.data;
