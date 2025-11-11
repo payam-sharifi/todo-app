@@ -38,19 +38,35 @@ jobs:
 
             echo "🐍 Updating backend..."
             cd ../server
+
+            # Create virtualenv if missing
+            if [ ! -d "venv" ]; then
+              python3 -m venv venv
+            fi
+
+            # Activate virtualenv
             source venv/bin/activate
+
+            # Upgrade pip and install requirements
             pip install --upgrade pip
             pip install -r requirements.txt
+
+            # Apply Django migrations
             python manage.py migrate --noinput
+
+            # Optional: collect static files
+            # python manage.py collectstatic --noinput
+
             deactivate
 
-            echo "🚀 Restarting backend..."
+            echo "🚀 Restarting backend with PM2..."
             pm2 delete todoapp-back || true
-            pm2 start /todo-app/server/venv/bin/gunicorn \
+            pm2 start venv/bin/gunicorn \
               --name todoapp-back \
-              --chdir /todo-app/server \
+              -- \
               todos.wsgi:application \
-              --bind 127.0.0.1:8000
+              --bind 127.0.0.1:8000 \
+              --chdir /todo-app/server
             pm2 save
 
             echo "✅ Deployment done!"
