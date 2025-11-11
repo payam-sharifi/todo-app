@@ -2,7 +2,7 @@ name: Deploy TodoApp to Server
 
 on:
   push:
-    branches: [ master ]  
+    branches: [ master ]
 
 jobs:
   deploy:
@@ -22,26 +22,37 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 22
           script: |
-            cd /todo-app
+            set -e
 
             echo "🔄 Pulling latest code..."
-            git pull
+            cd /todo-app
+            git reset --hard
+            git clean -fd
+            git pull origin master
 
             echo "📦 Building frontend..."
             cd client
-            npm install
+            npm ci
             npm run build
 
-            echo "🐍 Updating backend..."
+            echo "🐍 Setting up backend..."
             cd ../server
+            # Activate virtual environment
             source ../venv/bin/activate
             pip install -r requirements.txt
             python manage.py migrate --noinput
+
+           
+
             deactivate
 
-            echo "🚀 Restarting backend..."
+            echo "🚀 Restarting backend with PM2..."
             pm2 delete todoapp-back || true
-            pm2 start "/todo-app/server/venv/bin/gunicorn todos.wsgi:application --chdir /todo-app/server --bind 127.0.0.1:8000" --name todoapp-back
+            pm2 start /todo-app/venv/bin/gunicorn \
+              --name todoapp-back \
+              --chdir /todo-app/server \
+              todos.wsgi:application \
+              --bind 127.0.0.1:8000
             pm2 save
 
             echo "✅ Deployment done!"
