@@ -16,7 +16,7 @@ export default function TodoFilter({
 
   return (
     <div className="flex flex-wrap gap-3 justify-center my-3 max-w-3xl ">
-      <div className="flex flex-col flex-1 min-w-[200px]">
+      <div className="flex filter-status flex-col flex-1 min-w-[200px]">
         <label className="text-gray-300 text-xs font-bold  mb-1">Nach Status filtern</label>
         <select
           value={status}
@@ -30,7 +30,7 @@ export default function TodoFilter({
         </select>
       </div>
 
-      <div className="flex flex-col flex-1 min-w-[200px]">
+      <div className="flex title-search flex-col flex-1 min-w-[200px]">
         <label className="text-gray-300 mb-1 font-bold text-xs">Suche nach Titel</label>
         <input
           type="text"

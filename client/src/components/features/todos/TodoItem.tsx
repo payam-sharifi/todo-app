@@ -12,7 +12,13 @@ interface TodoItemProps {
 }
 
 export const TodoItem = memo(
-  ({ todo, onToggle: onDoneToggle, onDelete, onProgress, onEdit }: TodoItemProps) => {
+  ({
+    todo,
+    onToggle: onDoneToggle,
+    onDelete,
+    onProgress,
+    onEdit,
+  }: TodoItemProps) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editedTitle, setEditedTitle] = useState(todo.titel);
     const [editedDesc, setEditedDesc] = useState(todo.beschreibung || "");
@@ -51,11 +57,11 @@ export const TodoItem = memo(
             id={`todo-${todo.id}`}
             type="checkbox"
             onClick={handleProgressToggle}
-           onChange={()=>console.log()}
+            onChange={() => console.log()}
             checked={
               todo.status === "in_bearbeitung" || todo.status === "erledigt"
             }
-            className=" cursor-pointer w-4 h-4 mt-1 accent-purple-500 bg-gray-100 border-purple-900 rounded-sm 
+            className="isedit cursor-pointer w-4 h-4 mt-1 accent-purple-500 bg-gray-100 border-purple-900 rounded-sm 
              focus:ring-purple-900 dark:focus:ring-purple-900 dark:ring-offset-gray-800 
              focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
           />
@@ -73,7 +79,7 @@ export const TodoItem = memo(
                 onChange={(e) => setEditedDesc(e.target.value)}
               />
               <div className="flex gap-2 mt-2">
-              <button
+                <button
                   onClick={handleCancelEdit}
                   className=" cursor-pointer bg-gray-500 hover:bg-gray-400 text-xs px-2 py-1 rounded"
                 >
@@ -85,7 +91,6 @@ export const TodoItem = memo(
                 >
                   speichern
                 </button>
-               
               </div>
             </div>
           ) : (
@@ -108,12 +113,11 @@ export const TodoItem = memo(
           )}
         </div>
 
-
         <div className="flex items-center gap-3">
           {!isEditing && (
             <CiEdit
               size={22}
-              className="cursor-pointer hover:text-yellow-300 text-gray-300 transition-colors duration-200"
+              className="edit-task cursor-pointer hover:text-yellow-300 text-gray-300 transition-colors duration-200"
               onClick={handleEditClick}
               aria-label="Edit todo"
             />
@@ -122,8 +126,10 @@ export const TodoItem = memo(
           {todo.status !== "offen" && !isEditing && (
             <>
               <FaCheckCircle
-                className={`cursor-pointer hover:text-green-300 transition-colors duration-200 ${
-                  todo.status === "erledigt" ? "text-green-400" : "text-gray-300"
+                className={`task-done cursor-pointer hover:text-green-300 transition-colors duration-200 ${
+                  todo.status === "erledigt"
+                    ? "text-green-400"
+                    : "text-gray-300"
                 }`}
                 size={20}
                 onClick={handleDoneToggle}
@@ -133,15 +139,14 @@ export const TodoItem = memo(
                     : "Mark as complete"
                 }
               />
-          
             </>
           )}
-              <FaTrash
-                className="cursor-pointer hover:text-red-300 text-gray-300 transition-colors duration-200"
-                size={18}
-                onClick={handleDelete}
-                aria-label="Delete todo"
-              />
+          <FaTrash
+            className=" handleDelete cursor-pointer hover:text-red-300 text-gray-300 transition-colors duration-200"
+            size={18}
+            onClick={handleDelete}
+            aria-label="Delete todo"
+          />
         </div>
       </div>
     );

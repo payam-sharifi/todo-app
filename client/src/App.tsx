@@ -1,8 +1,11 @@
+import OnboardingTour from "./components/common/OnboardingTour";
 import TodoFilterList from "./components/features/todos/TodoFilterList";
 import TodoForm from "./components/features/todos/TodoForm";
 
 function App() {
   return (
+    <>
+    <OnboardingTour />
     <div className="bg-purple-950 p-2 min-h-screen flex justify-center items-center">
       <div className="max-w-[500px] w-[90%] bg-slate-900 p-4 rounded-md shadow-md flex flex-col h-[600px]">
         <h1 className=" text-center text-white text-xl mb-2">Aufgabenliste</h1>
@@ -12,6 +15,7 @@ function App() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

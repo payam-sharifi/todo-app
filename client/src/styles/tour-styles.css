@@ -1,0 +1,18 @@
+.driver-popover {
+  background-color: #ba41ea8b;
+  color: #dccccc;
+}
+
+
+
+.driver-popover.driverjs-theme button {
+  flex: 1;
+  text-align: center;
+  background-color: #b57f7f;
+  color: #841c1c;
+  border: 2px solid #000;
+  text-shadow: none;
+  font-size: 14px;
+  padding: 5px 8px;
+  border-radius: 6px;
+}

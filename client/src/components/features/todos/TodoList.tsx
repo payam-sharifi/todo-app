@@ -149,7 +149,7 @@ export default function TodoList({ status, title }: TodoListProps) {
     <>
       <div
         ref={listRef}
-        className="overflow-y-auto h-full 
+        className="overflow-y-auto h-full list-section
                [scrollbar-width:thin] 
                [scrollbar-color:white_transparent] 
                [&::-webkit-scrollbar]:w-2 
