@@ -3,63 +3,72 @@
 A modern **full-stack Todo Application** built with **React (Vite + TypeScript)** on the frontend and **Django REST Framework** on the backend.  
 It includes an automated **GitHub Actions CI/CD pipeline** that deploys the app to a remote server using SSH and PM2.
 
-FrontEnd   : https://mytodolist.appventuregmbh.com
+FrontEnd : https://mytodolist.appventuregmbh.com
 BackendApi : https://apimytodos.appventuregmbh.com/api/todos
+GitHub : https://github.com/payam-sharifi/todo-app.git
 
 ---
+
 ## 🏗️ Architecture Overview
 
 The **TodoApp** frontend follows the **CQRS (Command Query Responsibility Segregation)** pattern to ensure clear separation between:
+
 - **Commands:** operations that change state (e.g., create, update, delete tasks)
 - **Queries:** operations that read state (e.g., fetch tasks, filter lists)
 
 This approach improves maintainability, scalability, and testing by decoupling how data is **read** from how it’s **written**.
 
 Frontend data fetching and mutation are implemented with:
+
 - **React Query** for queries and cache management
 - **Axios** for API communication
 - **Custom hooks** (e.g., `useCreateTask`, `useGetTasks`, etc.) to encapsulate logic
 
 ---
 
-
 ## 🚀 Features
 
-- Add, edit, and delete, update tasks 
-- Mark tasks as completed or pending  
-- Filter tasks by status (open / Active / Completed)  
-- Responsive UI built with TailwindCSS  
+- Add, edit, and delete, update tasks
+- Mark tasks as completed or pending
+- Filter tasks by status (open / Active / Completed)
+- Responsive UI built with TailwindCSS
+- multilanguage managment (en, de)
+- Introduction or tour
 - Pagination By Scroll(InfinitivScroll)
-- RESTful API using Django REST Framework  
-- Toast notifications and smooth UX  
-- Automated deployment pipeline via GitHub Actions  
-- OS Debian - NginX + PM2 + Gunicorn for stable backend process management  
+- RESTful API using Django REST Framework
+- Toast notifications and smooth UX
+- Automated deployment pipeline via GitHub Actions
+- OS Debian - NginX + PM2 + Gunicorn for stable backend process management
 
 ---
 
 ## 🧰 Tech Stack
 
 ### 🖥️ Frontend
+
 - **React 19** + **Vite 7** + **TypeScript 5.9**
 - **TailwindCSS 4**
-- **React Query** for server-state management  
-- **React Hook Form** for form handling  
-- **Axios** for API communication  
-- **React Toastify** for notifications  
+- **React Query** for server-state management
+- **React Hook Form** for form handling
+- **Axios** for API communication
+- **React Toastify** for notifications
 
 ### ⚙️ Backend
+
 - **Django 4.2**
 - **Django REST Framework (DRF)**
 - **django-cors-headers**
 - **django-filter**
-- **python-decouple** for environment configuration  
-- **Gunicorn** for production server  
+- **python-decouple** for environment configuration
+- **Gunicorn** for production server
 - **PM2** for process management
 
 ---
+
 ## 🛠️ Local Development Setup
 
 1️⃣ Clone the repository
+
 ```bash
 git clone https://github.com/payam-sharifi/todo-app.git
 cd todo-app
@@ -93,8 +102,8 @@ Installs backend dependencies and runs migrations
 Restarts the Django backend with PM2 + Gunicorn
 ✅ Deployment is fully automated and requires no manual steps once set up.
 
- 
- 
+
+
 Future Improvements can be done:
 Add user authentication (login / signup)
 Task deadlines and due dates
@@ -141,16 +150,17 @@ todo-app/
 
 ### 🏗️ Architecture Notes
 
-- **Frontend:** Implements **CQRS pattern** — separating “queries” (data fetching) from “commands” (mutations).  
-  - Queries: handled with **React Query** for caching and synchronization  
-  - Commands: handled via **Axios mutations** with invalidation for UI updates  
+- **Frontend:** Implements **CQRS pattern** — separating “queries” (data fetching) from “commands” (mutations).
+  - Queries: handled with **React Query** for caching and synchronization
+  - Commands: handled via **Axios mutations** with invalidation for UI updates
 
-- **Backend:** Django REST Framework provides clean API endpoints for tasks (CRUD operations).  
-  - Uses **django-filter** and **CORS headers**  
-  - Deployed using **Gunicorn** behind **PM2** for stability  
+- **Backend:** Django REST Framework provides clean API endpoints for tasks (CRUD operations).
+  - Uses **django-filter** and **CORS headers**
+  - Deployed using **Gunicorn** behind **PM2** for stability
 
 - **Deployment:** Automated via **GitHub Actions** (on push to `master`) using an SSH-based workflow that:
-  1. Pulls the latest code  
-  2. Builds the frontend  
-  3. Installs backend dependencies & runs migrations  
+  1. Pulls the latest code
+  2. Builds the frontend
+  3. Installs backend dependencies & runs migrations
   4. Restarts Django using **PM2 + Gunicorn**
+```

@@ -3,35 +3,41 @@
 Eine moderne **Full-Stack-Todo-Anwendung**, gebaut mit **React (Vite + TypeScript)** im Frontend und **Django REST Framework** im Backend.  
 Sie enthält eine automatisierte **GitHub Actions CI/CD-Pipeline**, die die App über SSH auf einen Remote-Server mit **PM2** bereitstellt.
 
-FrontEnd   : https://mytodolist.appventuregmbh.com
+FrontEnd : https://mytodolist.appventuregmbh.com
 BackendApi : https://apimytodos.appventuregmbh.com/api/todos
+GitHub : https://github.com/payam-sharifi/todo-app.git
+
 ---
 
 ## 🏗️ Architekturübersicht
 
-Das Frontend von **TodoApp** folgt dem **CQRS-Muster (Command Query Responsibility Segregation)**, um eine klare Trennung zwischen folgenden Aufgaben zu gewährleisten:  
-- **Commands:** Operationen, die den Zustand ändern (z. B. Aufgaben erstellen, aktualisieren, löschen)  
+Das Frontend von **TodoApp** folgt dem **CQRS-Muster (Command Query Responsibility Segregation)**, um eine klare Trennung zwischen folgenden Aufgaben zu gewährleisten:
+
+- **Commands:** Operationen, die den Zustand ändern (z. B. Aufgaben erstellen, aktualisieren, löschen)
 - **Queries:** Operationen, die den Zustand lesen (z. B. Aufgaben abrufen, filtern)
 
 Dieser Ansatz verbessert die Wartbarkeit, Skalierbarkeit und Testbarkeit, indem **Lesen** und **Schreiben** von Daten getrennt werden.
 
 Frontend-Datenabruf und -Mutationen werden implementiert mit:
-- **React Query** für Query-Caching und Synchronisation  
-- **Axios** für API-Kommunikation  
+
+- **React Query** für Query-Caching und Synchronisation
+- **Axios** für API-Kommunikation
 - **Custom Hooks** (z. B. `useCreateTask`, `useGetTasks`) zur Kapselung der Logik
 
 ---
 
 ## 🚀 Funktionen
 
-- Aufgaben hinzufügen, bearbeiten, löschen und aktualisieren  
-- Aufgaben als erledigt oder offen markieren  
-- Aufgaben nach Status filtern (Offen / Aktiv / Abgeschlossen)  
-- Responsives UI mit TailwindCSS  
-- Pagination via Scroll (Infinite Scroll)  
-- RESTful API mit Django REST Framework  
-- Toast-Benachrichtigungen für eine flüssige Benutzererfahrung  
-- Automatisierte Deployment-Pipeline über GitHub Actions  
+- Aufgaben hinzufügen, bearbeiten, löschen und aktualisieren
+- Aufgaben als erledigt oder offen markieren
+- Aufgaben nach Status filtern (Offen / Aktiv / Abgeschlossen)
+- Responsives UI mit TailwindCSS
+- Pagination via Scroll (Infinite Scroll)
+- RESTful API mit Django REST Framework
+- Mehrsprachiges Management (EN DE)
+- Einführung oder Rundgang
+- Toast-Benachrichtigungen für eine flüssige Benutzererfahrung
+- Automatisierte Deployment-Pipeline über GitHub Actions
 - OS: Debian – Nginx + PM2 + Gunicorn für stabiles Backend-Management
 
 ---
@@ -39,20 +45,22 @@ Frontend-Datenabruf und -Mutationen werden implementiert mit:
 ## 🧰 Tech Stack
 
 ### 🖥️ Frontend
-- **React 19** + **Vite 7** + **TypeScript 5.9**  
-- **TailwindCSS 4**  
-- **React Query** für Server-State-Management  
-- **React Hook Form** für Formularhandling  
-- **Axios** für API-Kommunikation  
-- **React Toastify** für Benachrichtigungen  
+
+- **React 19** + **Vite 7** + **TypeScript 5.9**
+- **TailwindCSS 4**
+- **React Query** für Server-State-Management
+- **React Hook Form** für Formularhandling
+- **Axios** für API-Kommunikation
+- **React Toastify** für Benachrichtigungen
 
 ### ⚙️ Backend
-- **Django 4.2**  
-- **Django REST Framework (DRF)**  
-- **django-cors-headers**  
-- **django-filter**  
-- **python-decouple** für Umgebungsvariablen  
-- **Gunicorn** als Produktionsserver  
+
+- **Django 4.2**
+- **Django REST Framework (DRF)**
+- **django-cors-headers**
+- **django-filter**
+- **python-decouple** für Umgebungsvariablen
+- **Gunicorn** als Produktionsserver
 - **PM2** zur Prozessverwaltung
 
 ---
@@ -60,6 +68,7 @@ Frontend-Datenabruf und -Mutationen werden implementiert mit:
 ## 🛠️ Lokale Entwicklungsumgebung
 
 1️⃣ Repository klonen:
+
 ```bash
 git clone https://github.com/payam-sharifi/todo-app.git
 cd todo-app
@@ -136,3 +145,4 @@ Pull des aktuellen Codes
 Frontend Build
 Backend-Abhängigkeiten + Migrationen
 Neustart des Backends via PM2 + Gunicorn
+```
