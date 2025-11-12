@@ -10,6 +10,7 @@ export default function OnboardingTour() {
     const tour: Driver = driver({
       nextBtnText: t("next"),
       prevBtnText: t("prev"),
+      doneBtnText: t("done"),
       animate: true,
       steps: [
         {

@@ -35,7 +35,7 @@
   "Fehler_beim_Erstellen": "Error creating task",
   "Erfolgreich_gelöscht": "Successfully deleted",
   "Löschen_fehlgeschlagen": "Deletion failed",
-  "Erfolgreich_bearbeitet": "Successfully edited",
+  "Erfolgreich_bearbeitet": "Successfully Done",
   "no_response": "[API ERROR] No response received from the server.",
   "Unexpected_error": "Unexpected error",
   "API_REQUEST_ERROR": "API REQUEST ERROR",
@@ -44,5 +44,6 @@
   "change_lang": "change language",
   "change_lang_hier": "You can change the language to German or English.",
   "next": "next",
-  "prev": "previus"
+  "prev": "previus",
+  "done":"Done"
 }

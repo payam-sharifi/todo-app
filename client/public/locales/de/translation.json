@@ -35,7 +35,7 @@
  "Fehler_beim_Erstellen":"Fehler beim Erstellen",
  "Erfolgreich_gelöscht":"Erfolgreich gelöscht",
  "Löschen_fehlgeschlagen":"Löschen fehlgeschlagen",
- "Erfolgreich_bearbeitet":"Erfolgreich bearbeitet",
+ "Erfolgreich_bearbeitet":"Erfolgreich durchgeführt",
  "no_response":"[API-FEHLER] Keine Antwort vom Server empfangen.",
  "Unexpected_error":"Unerwarteter Fehler",
 "API_REQUEST_ERROR":"API REQUEST ERROR",
@@ -44,5 +44,6 @@
 "change_lang":"Sprache ändern",
 "change_lang_hier":"Sie können die Sprache auf Deutsch oder Englisch ändern.",
 "next":"nächste",
-"prev":"vorherige"
+"prev":"vorherige",
+"done":"Erledigt"
 }
