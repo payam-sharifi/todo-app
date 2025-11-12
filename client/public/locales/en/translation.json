@@ -42,5 +42,7 @@
   "delete_confirmation": "Are you sure to delete task?",
   "Aufgaben_löschen": "Delete Task",
   "change_lang": "change language",
-  "change_lang_hier": "You can change the language to German or English."
+  "change_lang_hier": "You can change the language to German or English.",
+  "next": "next",
+  "prev": "previus"
 }

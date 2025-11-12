@@ -42,5 +42,7 @@
 "delete_confirmation": "Möchten Sie wirklich löschen?",
 "Aufgaben_löschen":"Aufgabe löschen",
 "change_lang":"Sprache ändern",
-"change_lang_hier":"Sie können die Sprache auf Deutsch oder Englisch ändern."
+"change_lang_hier":"Sie können die Sprache auf Deutsch oder Englisch ändern.",
+"next":"nächste",
+"prev":"vorherige"
 }
