@@ -1,6 +1,7 @@
 import { memo } from "react";
 import { FaExclamationTriangle, FaTimes } from "react-icons/fa";
 import { Spinner } from "./Spinner";
+import { useTranslation } from "react-i18next";
 
 interface ConfirmModalProps {
   isOpen: boolean;
@@ -23,12 +24,12 @@ export const ConfirmModal = memo(({
   confirmText = "Delete",
   cancelText = "Cancel"
 }: ConfirmModalProps) => {
+  const{t}=useTranslation()
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-opacity-20 flex items-center justify-center z-50 p-4">
       <div className="bg-purple-200 rounded-lg max-w-md w-full p-6 shadow-xl">
-        {/* Header with red warning icon */}
         <div className="flex items-start gap-4 mb-4">
           <div className=" text-red-500">
             <FaExclamationTriangle size={24} />
@@ -64,7 +65,7 @@ export const ConfirmModal = memo(({
             {isConfirmLoading ? (
               <>
                 <Spinner color="white" size="sm" />
-                <span>Löschen...</span>
+                <span>{t("Löschen")}...</span>
               </>
             ) : (
               confirmText

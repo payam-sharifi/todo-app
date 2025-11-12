@@ -5,6 +5,7 @@ import { Spinner } from "@/components/common/Spinner";
 import { useDeleteTodo, useGetTodosList, useUpdateTodoById } from "@/hooks";
 import { TodoItem } from "./TodoItem";
 import { ConfirmModal } from "@/components/common/ConfirmModal";
+import { useTranslation } from "react-i18next";
 
 interface TodoListProps {
   status: string;
@@ -20,7 +21,7 @@ export default function TodoList({ status, title }: TodoListProps) {
     hasNextPage,
     isFetchingNextPage,
   } = useGetTodosList({ status, title });
-
+  const { t } = useTranslation();
   const { mutate: mutateDeleteTodo, isPending } = useDeleteTodo();
   const { mutate: mutateDoneToggle } = useUpdateTodoById();
   const listRef = useRef<HTMLDivElement>(null);
@@ -136,13 +137,17 @@ export default function TodoList({ status, title }: TodoListProps) {
   if (error) {
     return (
       <p className="text-red-500 text-center py-8">
-        Fehler beim Laden der Todos: {error.message}
+        {t("Fehler_beim_Laden_der_Todos")}: {error.message}
       </p>
     );
   }
 
   if (!allTodos.length && !isLoading) {
-    return <p className="text-white text-center py-8">Keine Aufgaben gefunden</p>;
+    return (
+      <p className="text-white text-center py-8">
+        {t("Keine_Aufgaben_gefunden")}
+      </p>
+    );
   }
 
   return (
@@ -162,25 +167,25 @@ export default function TodoList({ status, title }: TodoListProps) {
 
         {isFetchingNextPage && (
           <div className="flex justify-center py-4">
-            <Spinner color="white" size="sm" text="Loading more..." />
+            <Spinner color="white" size="sm" text={t("Loading_more")} />
           </div>
         )}
 
         {!hasNextPage && allTodos.length > 0 && (
           <div className="text-center py-4 text-gray-400">
-            Du hast das Ende erreicht.
+            {t("Du_hast_das_Ende_erreicht.")}
           </div>
         )}
       </div>
 
       <ConfirmModal
         isOpen={!!todoToDelete}
-        title="Aufgaben löschen"
-        message={`Möchten Sie "${todoToDelete?.title}" wirklich löschen?`}
+        title={t("Aufgaben_löschen")}
+        message={t("delete_confirmation")}
         onConfirm={handleConfirmDelete}
         onCancel={handleCancelDelete}
-        confirmText="Löschen"
-        cancelText="Stornieren"
+        confirmText={t("Löschen")}
+        cancelText={t("stornieren")}
         isConfirmLoading={isPending}
       />
     </>

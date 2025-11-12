@@ -3,37 +3,45 @@ import { driver } from "driver.js";
 import type { Driver } from "driver.js";
 import "driver.js/dist/driver.css";
 import "@/styles/tour-styles.css";
+import { useTranslation } from "react-i18next";
 export default function OnboardingTour() {
+  const {t}=useTranslation()
   useEffect(() => {
-    // create tour instance
+  
     const tour: Driver = driver({
       showProgress: true,
-      //popoverClass: "",
-      //overlayColor: "#ffffff",
       animate: true,
       steps: [
         {
+          element: ".lang",
+          popover: {
+            title: t("change_lang"),
+            description:
+              t("change_lang_hier"),
+          },
+        },
+        {
           element: ".todo-title",
           popover: {
-            title: "Titel",
+            title: t("Titel"),
             description:
-              "Hier können Sie Ihren Titel eingeben, das ist notwendig",
+              t("Hier_können_Sie_Ihren_Titel_eingeben,_das_ist_notwendig"),
           },
         },
         {
           element: ".todo-desc",
           popover: {
-            title: "Beschreibung",
+            title: t("Beschreibung"),
             description:
-              "Der Benutzer kann eine optionale Beschreibung schreiben",
+              t("Der_Benutzer_kann_eine_optionale_Beschreibung_schreiben"),
           },
         },
         {
           element: ".todo-btn-submit",
           popover: {
-            title: "Submit",
+            title: t("Einreichen"),
             description:
-              "Verwenden Sie diese Schaltfläche, um Ihre Aufgaben zu speichern.",
+              t("Verwenden_Sie_diese_Schaltfläche,_um_Ihre_Aufgaben_zu_speichern."),
           },
         },
 
@@ -42,17 +50,17 @@ export default function OnboardingTour() {
           element: ".filter-status",
           popover: {
             title:
-              "Nach Status Filtern",
+              t("Nach_Status_Filtern"),
             description:
-              "Sie können Ihre Aufträge nach ihrem Status filtern: offen, in Bearbeitung, erledigt.",
+              t("Sie_können_Ihre_Aufträge_nach_ihrem_Status_filtern:_offen,_in_Bearbeitung,_erledigt."),
           },
         },
         {
           element: ".title-search",
           popover: {
-            title: "Suche nach Titel",
+            title: t("Suche_nach_Titel"),
             description:
-              "Indem Sie Ihren Aufgabentitel eingeben, können Sie ihn finden.",
+              t("Indem_Sie_Ihren_Aufgabentitel_eingeben,_können_Sie_ihn_finden."),
           },
         },
 
@@ -60,9 +68,9 @@ export default function OnboardingTour() {
         {
           element: ".list-section",
           popover: {
-            title: "Aufgabenliste",
+            title: t("Aufgabenliste"),
             description:
-              "Alle Aufgaben, die auf Ihrem Filter basieren, werden hier angezeigt. Durch endloses Scrollen können Sie weitere Aufgaben laden, falls vorhanden.",
+              t("Alle_Aufgaben"),
           },
         },
 
@@ -70,18 +78,18 @@ export default function OnboardingTour() {
         {
             element: ".isedit",
             popover: {
-              title: "Aufgabenliste",
+              title: t("Zum_Aktivieren_klicken"),
               description:
-                "Wenn eine Aufgabe als aktiv gilt, wird der Status In Bearbeitung oder Offen angezeigt. Im offenen Status wird dann rechts ein „Erledigt“-Häkchen angezeigt.",
+                t("Wenn_eine_Aufgabe_als_aktiv_gilt,_wird_der_Status_In_Bearbeitung_oder_Offen_angezeigt._Im_offenen_Status_wird_dann_rechts_ein_Erledigt-Häkchen_angezeigt."),
             },
           },
 
           {
             element: ".edit-task",
             popover: {
-              title: "Aufgabe bearbeiten",
+              title: t("Aufgabe_bearbeiten"),
               description:
-                "Sie können die Aufgabe bearbeiten, indem Sie hier klicken.",
+                t("Sie_können_die_Aufgabe_bearbeiten,_indem_Sie_hier_klicken."),
             },
           },
 
@@ -98,9 +106,9 @@ export default function OnboardingTour() {
           {
             element: ".handleDelete",
             popover: {
-              title: "Aufgabe erledigt",
+              title: t("Aufgabe_erledigt"),
               description:
-                "Hier können Sie eine Aufgabe löschen.",
+                t("Hier_können_Sie_eine_Aufgabe_löschen."),
             },
           },
 

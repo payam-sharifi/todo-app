@@ -3,8 +3,10 @@ import type { TodoRsType } from "@/types/todos.type";
 
 import { toast } from "react-toastify";
 import { updateTodoById } from "@/services";
+import { useTranslation } from "react-i18next";
 
 export const useUpdateTodoById = () => {
+  const {t}=useTranslation()
   const queryClient = useQueryClient();
 return useMutation<TodoRsType,Error,{ todo_ID: number; body: Partial<TodoRsType> }>({
     mutationKey: ["updateTodoById"],
@@ -12,7 +14,7 @@ return useMutation<TodoRsType,Error,{ todo_ID: number; body: Partial<TodoRsType>
     onSuccess: () => {
       
       queryClient.invalidateQueries({ queryKey: ["getAllToDoList"] });
-      toast.success("Erfolgreich bearbeitet")
+      toast.success(t("Erfolgreich_bearbeitet"))
     },
   });
 };

@@ -2,6 +2,7 @@ import type { TodoRsType, TodoStatus } from "@/types/todos.type";
 import { FaCheckCircle, FaTrash } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 import { memo, useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface TodoItemProps {
   todo: TodoRsType;
@@ -22,7 +23,7 @@ export const TodoItem = memo(
     const [isEditing, setIsEditing] = useState(false);
     const [editedTitle, setEditedTitle] = useState(todo.titel);
     const [editedDesc, setEditedDesc] = useState(todo.beschreibung || "");
-
+    const { t } = useTranslation();
     const handleDoneToggle = useCallback(() => {
       onDoneToggle?.(todo.id, todo.status, todo.titel);
     }, [onDoneToggle, todo.id, todo.status, todo.titel]);
@@ -83,13 +84,13 @@ export const TodoItem = memo(
                   onClick={handleCancelEdit}
                   className=" cursor-pointer bg-gray-500 hover:bg-gray-400 text-xs px-2 py-1 rounded"
                 >
-                  stornieren
+                  {t("stornieren")}
                 </button>
                 <button
                   onClick={handleSaveEdit}
                   className=" cursor-pointer bg-green-500 hover:bg-green-400 text-xs px-2 py-1 rounded"
                 >
-                  speichern
+                  {t("speichern")}
                 </button>
               </div>
             </div>

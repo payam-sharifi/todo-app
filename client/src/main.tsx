@@ -7,7 +7,7 @@ import { queryClient } from './lib/react-query/queryClient.ts';
 
 import App from './App.tsx'
 import "./styles/main.css";
-
+import "@/lib/i18n/i18n.ts"
 
 
 createRoot(document.getElementById('root')!).render(
