@@ -58,7 +58,7 @@ export const TodoItem = memo(
             id={`todo-${todo.id}`}
             type="checkbox"
             onClick={handleProgressToggle}
-            onChange={() => console.log()}
+            onChange={() => {}}
             checked={
               todo.status === "in_bearbeitung" || todo.status === "erledigt"
             }

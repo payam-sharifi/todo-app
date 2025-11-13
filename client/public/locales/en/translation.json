@@ -45,5 +45,9 @@
   "change_lang_hier": "You can change the language to German or English.",
   "next": "next",
   "prev": "previus",
-  "done":"Done"
+  "done": "Done",
+  "in_bearbeitung_done": "Task status successfully set to in progress",
+  "erledigt_done": "Task status successfully set to Completed.",
+  "offen_done": "Task status successfully set to open.",
+  "edit_susseccfull":"The task was successfully completed."
 }

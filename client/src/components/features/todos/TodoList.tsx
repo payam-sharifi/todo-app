@@ -6,6 +6,8 @@ import { useDeleteTodo, useGetTodosList, useUpdateTodoById } from "@/hooks";
 import { TodoItem } from "./TodoItem";
 import { ConfirmModal } from "@/components/common/ConfirmModal";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import { queryClient } from "@/lib/react-query/queryClient";
 
 interface TodoListProps {
   status: string;
@@ -39,13 +41,22 @@ export default function TodoList({ status, title }: TodoListProps) {
     currentStatus: TodoStatus,
     titel: string
   ) => {
-    mutateDoneToggle({
-      todo_ID,
-      body: {
-        status: currentStatus === "erledigt" ? "in_bearbeitung" : "erledigt",
-        titel,
+    mutateDoneToggle(
+      {
+        todo_ID,
+        body: {
+          status: currentStatus === "erledigt" ? "in_bearbeitung" : "erledigt",
+          titel,
+        },
       },
-    });
+      {
+        onSuccess(response: TodoRsType) {
+          response.status === "in_bearbeitung"
+            ? toast.success(t("in_bearbeitung_done"))
+            : toast.success(t("erledigt_done"));
+        },
+      }
+    );
   };
 
   const handleProgressStatus = (
@@ -53,13 +64,23 @@ export default function TodoList({ status, title }: TodoListProps) {
     currentStatus: TodoStatus,
     titel: string
   ) => {
-    mutateDoneToggle({
-      todo_ID,
-      body: {
-        status: currentStatus === "offen" ? "in_bearbeitung" : "offen",
-        titel,
+    mutateDoneToggle(
+      {
+        todo_ID,
+        body: {
+          status: currentStatus === "offen" ? "in_bearbeitung" : "offen",
+          titel,
+        },
       },
-    });
+      {
+        onSuccess: (response: TodoRsType) => {
+          queryClient.invalidateQueries({ queryKey: ["getAllToDoList"] });
+          response.status === "in_bearbeitung"
+            ? toast.success(t("in_bearbeitung_done"))
+            : toast.success(t("offen_done"));
+        },
+      }
+    );
   };
 
   const handleDeleteClick = useCallback(
@@ -87,13 +108,20 @@ export default function TodoList({ status, title }: TodoListProps) {
   }, []);
 
   const handleEdit = (todo_ID: number, titel: string, beschreibung: string) => {
-    mutateDoneToggle({
-      todo_ID,
-      body: {
-        beschreibung,
-        titel,
+    mutateDoneToggle(
+      {
+        todo_ID,
+        body: {
+          beschreibung,
+          titel,
+        },
       },
-    });
+      {
+        onSuccess: () => {
+          toast.success(t("edit_susseccfull"));
+        },
+      }
+    );
   };
 
   useEffect(() => {

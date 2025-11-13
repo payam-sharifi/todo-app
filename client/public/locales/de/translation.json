@@ -45,5 +45,9 @@
 "change_lang_hier":"Sie können die Sprache auf Deutsch oder Englisch ändern.",
 "next":"nächste",
 "prev":"vorherige",
-"done":"Erledigt"
+"done":"Erledigt",
+"in_bearbeitung_done":"Aufgabenstatus erfolgreich auf in bearbeitung gesetzt.",
+"erledigt_done":"Aufgabenstatus erfolgreich auf Erledigt gesetzt.",
+"offen_done":"Aufgabenstatus erfolgreich auf offen gesetzt.",
+"edit_susseccfull":"Die Aufgabe wurde erfolgreich bearbeitet."
 }
